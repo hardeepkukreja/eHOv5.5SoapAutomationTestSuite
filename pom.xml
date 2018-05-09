@@ -1,0 +1,108 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>MavenHipaatWebserviceProject</groupId>
+	<artifactId>MavenHipaatWebserviceProject</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>Soapui</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		
+	</dependencies>
+<pluginRepositories>
+    <pluginRepository>
+        <id>smartbear-sweden-plugin-repository</id>
+        <url>http://www.soapui.org/repository/maven2/</url>
+    </pluginRepository>
+	
+	
+</pluginRepositories>
+	
+
+
+	<build>
+
+		<plugins>
+
+			<plugin>
+
+				<groupId>com.smartbear.soapui</groupId>
+
+				<artifactId>soapui-maven-plugin</artifactId>
+
+				<version>5.0.0</version>
+				<executions>
+					<execution>
+						<id>eHOv5.5CMSAutomationTestSuite</id>
+						<configuration>
+							<endpoint>http://35.194.92.218:9081/cms/soap</endpoint>
+							<projectFile>eHO-v5-5-CMS-Automation-soapui-project.xml</projectFile>
+							<outputFolder>${project.basedir}/output</outputFolder>
+							<testSuite>eHO v5.5_CMS_Automation_TestSuite</testSuite>
+							<junitReport>true</junitReport>
+							<exportwAll>true</exportwAll>
+							<printReport>true</printReport>
+							<testFailIgnore>true</testFailIgnore>
+						</configuration>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<phase>test</phase>
+					</execution>
+					<execution>
+						<id>eHOv5.5CVSAutomationTestSuite</id>
+						<configuration>
+							<endpoint>http://35.194.92.218:9081/cvs/soap</endpoint>
+							<projectFile>eHO-v5-5-CVS-Automation-soapui-project.xml</projectFile>
+							<outputFolder>${project.basedir}/output</outputFolder>
+							<testSuite>eHO v5.5_CVS_Automation_TestSuite</testSuite>
+							<junitReport>true</junitReport>
+							<exportwAll>true</exportwAll>
+							<printReport>true</printReport>
+							<testFailIgnore>true</testFailIgnore>
+						</configuration>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<phase>test</phase>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+	</build>
+
+	<reporting>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.20.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.20.1</version>
+			</plugin>
+		</plugins>
+
+	</reporting>
+
+</project>
+  
+
