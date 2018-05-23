@@ -50,9 +50,9 @@
 						<id>eHOv55CMSAutomationTest</id>
 						<configuration>
 							<endpoint>http://35.194.92.218:9081/cms/soap</endpoint>
-							<projectFile>eHO-v5-5-CMS-Automation-Test-soapui-project.xml</projectFile>
+							<projectFile>eHO55CMSAutomation.xml</projectFile>
 							<outputFolder>${project.basedir}/output</outputFolder>
-							<testSuite>eHO_TestSuite</testSuite>
+							<testSuite>eHO55TestSuite</testSuite>
 							<junitReport>true</junitReport>
 							<exportwAll>true</exportwAll>
 							<printReport>true</printReport>
