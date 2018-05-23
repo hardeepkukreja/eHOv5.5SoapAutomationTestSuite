@@ -52,7 +52,7 @@
 							<endpoint>http://35.194.92.218:9081/cms/soap</endpoint>
 							<projectFile>eHO-v5-5-CMS-Automation-soapui-project.xml</projectFile>
 							<outputFolder>${project.basedir}/output</outputFolder>
-							<testSuite>eHO v5.5_CMS_Automation_TestSuite</testSuite>
+							<testSuite>eHO_v5.5_CMS_Automation_TestSuite</testSuite>
 							<junitReport>true</junitReport>
 							<exportwAll>true</exportwAll>
 							<printReport>true</printReport>
