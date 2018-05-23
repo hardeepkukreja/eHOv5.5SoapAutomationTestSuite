@@ -49,10 +49,10 @@
 					<execution>
 						<id>eHOv5.5CMSAutomationTestSuite</id>
 						<configuration>
-							<endpoint>http://35.194.92.218:9081/cms/soap</endpoint>
-							<projectFile>eHO-v5-5-CMS-Automation-soapui-project.xml</projectFile>
+							<endpoint>http://35.194.92.218:9081/cms</endpoint>
+							<projectFile>eHO-v5-5-CMS-Automation-Test-soapui-project.xml</projectFile>
 							<outputFolder>${project.basedir}/output</outputFolder>
-							<testSuite>eHO v5.5_CMS_Automation_TestSuite</testSuite>
+							<testSuite>eHO_v5.5_CMS_Automation_TestSuite</testSuite>
 							<junitReport>true</junitReport>
 							<exportwAll>true</exportwAll>
 							<printReport>true</printReport>
@@ -62,24 +62,7 @@
 							<goal>test</goal>
 						</goals>
 						<phase>test</phase>
-					</execution>
-					<execution>
-						<id>eHOv5.5CVSAutomationTestSuite</id>
-						<configuration>
-							<endpoint>http://35.194.92.218:9081/cvs/soap</endpoint>
-							<projectFile>eHO-v5-5-CVS-Automation-soapui-project.xml</projectFile>
-							<outputFolder>${project.basedir}/output</outputFolder>
-							<testSuite>eHO v5.5_CVS_Automation_TestSuite</testSuite>
-							<junitReport>true</junitReport>
-							<exportwAll>true</exportwAll>
-							<printReport>true</printReport>
-							<testFailIgnore>true</testFailIgnore>
-						</configuration>
-						<goals>
-							<goal>test</goal>
-						</goals>
-						<phase>test</phase>
-					</execution>
+					</execution>					
 				</executions>
 			</plugin>
 		</plugins>
