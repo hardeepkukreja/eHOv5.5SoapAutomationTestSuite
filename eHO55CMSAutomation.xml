@@ -962,7 +962,389 @@
          </v2:request>
       </v2:ConsentManagementRequest>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://98.143.106.139:8282/ConsentManagementService"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="42876084-e350-4e5e-954b-7c9337a35e7e" name="eHO55TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="a40c9fd4-932b-43c3-8928-3dc03bf8201d" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="1. PutSystemCD" searchProperties="true"><con:settings/><con:testStep type="request" id="a50000c1-8af9-47ce-a1b8-87f6905da8bd" name="1. PutSystemCD"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>consentManagementBinding</con:interface><con:operation>ConsentManagement</con:operation><con:request name="1. PutSystemCD" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="b7548625-4fa4-40cc-997e-b12db8903a64"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://35.194.92.218:9081/cms/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v2="http://www.hipaat.com/schemas/cms/v2.3">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://98.143.106.139:8282/ConsentManagementService"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="7acc7f94-54c0-4c2c-84f7-537db4a3d555" wsaVersion="NONE" name="consentValidationBinding" type="wsdl" bindingName="{http://www.hipaat.com/schemas/cvs/v2.2}consentValidationBinding" soapVersion="1_1" anonymous="optional" definition="file:/D:/HIPAAT/CMTA%201C/WSDL/02-01-2018/consentValidation2_2_1.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/HIPAAT/CMTA%201C/WSDL/02-01-2018/consentValidation2_2_1.wsdl"><con:part><con:url>file:/D:/HIPAAT/CMTA%201C/WSDL/02-01-2018/consentValidation2_2_1.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.hipaat.com/schemas/cvs/v2.2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:schema="http://www.hipaat.com/schemas/cvs/v2.2" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://www.hipaat.com/schemas/cvs/v2.2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cvs="http://www.hipaat.com/schemas/cvs/v2.2">
+      <xs:annotation>
+        <xs:documentation>Copyright (c) 2006-2016 HIPAAT Inc., All rights reserved.
+
+      Use of this document is restricted to the terms of the
+      license that was granted by HIPAAT Inc.
+
+      HIPAAT INC. MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF
+      THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+      TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+      PARTICULAR PURPOSE, OR NON-INFRINGEMENT. HIPAAT INC. SHALL NOT BE LIABLE FOR
+      ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR
+      DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.</xs:documentation>
+      </xs:annotation>
+      <!--ConsentValidationRequest-->
+      <xs:element name="ConsentValidationRequest">
+        <xs:annotation>
+          <xs:documentation>The ConsentValidationRequest contains the definition for all requests to the Consent Validation Service.
+        
+        Attributes:
+          1. privacyOperation - What is the reason for this request: use, disclosure, collection 
+        Elements:
+          1. requestId - A request ID created by the caller; this is usually the transaction ID. It is stored in the audit log as a transaction ID.
+          2. userId - The provider that requested the patient's PHI.
+          3. serviceDeliveryOrgId - The business ID of the service delivery organization or location that the request was created.
+          4. purposeOfUse - An element that specifies the use of this request. The Purpose of Use is definable by the customer.
+          THE FOLLOWING ARE SPECIFIC TO PHI
+          5. classification - An optional element that specifies the classification types of policies to be evaluated. This element is only used if "Classification" is enabled.
+          6. context - The context specifies the patient and optionally the patient's PHI to be accessed. A list of contexts is allowed; each context can be for the same patient, or different patients. See Context Element
+          7. override - An optional element that specifies that the request is for an override. See Override Element.
+          8. attributes - An optional element that specifies additional attributes about the provider (userId) that may be required for validation.
+          9. property - An optional element that contains information about the request. This information is not used during validation; instead it is placed into the audit log record.
+
+        Property is a collection of additional values, represented as Name Value Pairs, which are used as additional information that is passed onto the auditing service to be stored in the audit log record. Also, the validation service understands some of the properties; these are used as commands to do something other validation or perform the validation is a specific way.
+          IS-ALIVE - Checks whether or not the validation process is alive. All values are not relevant since no validation is taken place. The result will be allowed=true and have the message "System Is Alive" in the RestrictionMessage section of the response. 
+          PATIENT-IN-CACHE - Checks if the patient ID is in the validation cache. The result will be allowed=true/false depending whether or not the patient exists in the cache and the message or either "Patient Exists" or "Patient does not Exist" in the RestrictionMessage section of the response.
+          CONTAINS-DIRECTIVES - Checks if the patient ID has consent directives. This command will retrieve the data from the database. The result will be allowed=true/false depending whether or not the patient has consent directives and the message or either "Consent Directives Exist" or "No Consent Directives Exist" in the RestrictionMessage section of the response.
+         CONTAINS-OVERRIDE - Checks if any overrides exist for the patient ID. This command will retrieve the data from the database. The result will be allowed=true/false depending whether or not the patient has consent directives and the message or either "Override Exists" or "No Override Exists" in the RestrictionMessage section of the response.
+         IGNORE-OVERRIDES - Will perform consent validation for the patient ID as if overrides do not exist.
+         TRACE - Will return a step-by-step trace of how the system came to the result. This is helpful when trying to understand how the system came to the final conclusion. The result can be found in the "trace" portion of the response.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="requestId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="userId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="serviceDeliveryOrgId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="purposeOfUse" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="classification" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="context" type="cvs:Context" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="override" type="cvs:Override" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="attributes" type="cvs:Attributes" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="property" type="cvs:nvPair" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+          <xs:attribute name="privacyOperation" type="cvs:privacyOperation" use="required"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="Context">
+        <xs:annotation>
+          <xs:documentation>The context element provides information about what the user is trying to view; which includes information about the patient and optionally information about the PHI:
+        Elements:
+          1. patientId - The patient ID recognized by the Consent System.
+          1. assigningAuthority - The Assigning Authority of the Patient ID.
+          2. ContextQualifier - PHI Specifier. A collection of name-value pairs which identify the Clinical Metadata. 
+          3. dateRange - PHI Specifier. An interval or single date that applies to the PHI in question. Generally, this is the date that the PHI was last updated.
+          4. phiClass - PHI Specifier. A coded meta data classification code for the data being requested
+          5. confidentialityCode - PHI Specifier. A coded meta data confidentiality associated with the PHI being requested.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="patientId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="assigningAuthority" type="xs:string" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="ContextQualifier" type="cvs:nvPair" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="phiClass" type="cvs:CodedMetaData" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="dateRange" type="cvs:dateRange" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="confidentialityCode" type="cvs:CodedMetaData" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:complexType>
+      <!--nvPair (Name/Value Pair)-->
+      <xs:complexType name="nvPair">
+        <xs:sequence>
+          <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:complexType>
+      <!--DateRange-->
+      <xs:complexType name="dateRange">
+        <xs:annotation>
+          <xs:documentation>A date range (fromDate, toDate, inclusive) that applies to the PHI in question. Generally, this is the date that the PHI was last updated.
+        Attributes:
+          1. inclusive - Attribute. Specifies whether the dates supplied are inclusive or exclusive.
+        Elements:
+          1. fromDate - Start date.
+          2. toDate - End date.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="fromDate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="toDate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="inclusive" use="required" type="xs:boolean"/>
+      </xs:complexType>
+      <!--CodedMetaData provides an XDS-like metadata container-->
+      <xs:complexType name="CodedMetaData">
+        <xs:annotation>
+          <xs:documentation>A Coded Meta Data (code name, code-system, code-system-version, display-name) for the data being requested. 
+
+        Elements:
+          1. codeName - The code name.
+          2. codeSystem - The system the code name belongs to.
+          3. codeSystemVersion - The version of the system the code name belongs to.
+          4. displayName - Human readable representation of the code name/system.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="codeName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="codeSystem" type="xs:string" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="codeSystemVersion" type="xs:string" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="displayName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:complexType>
+      <!--Enumeration of the types of access reasons supported-->
+      <xs:simpleType name="privacyOperation">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="collection"/>
+          <xs:enumeration value="use"/>
+          <xs:enumeration value="disclosure"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="Attributes">
+        <xs:annotation>
+          <xs:documentation>Consent directives can be limited to several different Entity Types. An Entity Type can be thought of as an attribute of a provider and/or facility. 
+        For any implementation, most of the above Entity Types will be disabled, but a few like role, workgroup, and/or department may be required in the creation of a consent directive. For example: "Allow only Emergency Department to have access to my PHI", or "Deny all Dentists access to my PHI".
+        The Consent Validation Request contains the provider ID and facility ID; in most cases this is sufficient for the Validation Service to fetch addition information (the attributes, or meta data) of the provider and facility to evaluate the consent directives; for efficiency the Attributes element allows the requesting system to populate all the addition information (the attributes, or meta data) about the provider and facility so that the validation service does not need to fetch it.
+        The Attributes Element can contain zero or more of any of the entity types listed above. 
+        The Validation Service uses the attributes together with a number of other inputs to adjudicate a response of 'Permit,' 'Deny' or ‘Permit through override.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="provider" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="user" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="facility" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="role" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="workgroup" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="department" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="jurisdiction" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="laboratory" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="pharmacy" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="payor" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="organization" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="dataWarehouse" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="userDefined1" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="userDefined2" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="userDefined3" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="userDefined4" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Override">
+        <xs:annotation>
+          <xs:documentation>An override is an optional component of the request that is used to signal that the provider is requesting to override the patient's wishes in this request. 
+        At the very least, a valid override reason code is required to make this a valid request.
+        An optional, text override reason is provided for further documentation to be recorded regarding the override request.
+        If the override occurs as a result of the patient providing a PIN to the user and granting them override authority, the base64 version of the MD5 hash for PIN will be part of the Override segment.
+
+        Elements:
+          1. code - The coded meta data that defines the override reason.
+          2. reason - An optional plain text reason.
+          3. pin - In the case that the directive is controlled by a PIN, and the patient has provided that PIN to the provider, a correctly matched PIN will allow the override to take place as "patient consented".
+          4. substName - Name of the substitute decision maker that was responsible for allowing the override.
+          5. substRelationship - Relationship to the patient of the substitute decision maker that was responsible for allowing the override.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="code" type="cvs:CodedMetaData" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="reason" type="xs:string" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="pin" type="xs:base64Binary" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="substName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="substRelationship" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:complexType>
+      <!--ConsentValidationResponse-->
+      <xs:element name="ConsentValidationResponse">
+        <xs:annotation>
+          <xs:documentation>The ConsentValidationRequest contains the definition for all requests to the Consent Validation Service.
+        
+        Elements:
+          1. requestId - A request ID created by the caller; this is usually the transaction ID. It is stored in the audit log as a transaction ID.
+          2. userId - The provider that requested the patient's PHI.
+          3. serviceDeliveryOrgId - The business ID of the service delivery organization or location that the request was created.
+          4. errorFlag - If an unexpected error occurred; other than the error messages listed below.
+          5. classification - An optional element that specifies the classification types of policies to be evaluated. This element is only used if "Classification" is enabled.
+          6. msgText - The message describing the error.
+          7. ConsentResponse - The actual results of the consent validation; corresponding to the Contexts supplied on the incoming request. See the documentation for ConsentResponse below.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="requestId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="userId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="serviceDeliveryOrgId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="errorFlag" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="msgText" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="ConsentResponse" type="cvs:ConsentResponse" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="ConsentResponse">
+        <xs:annotation>
+          <xs:documentation>Each ConsentResponse corresponds to the context element in the request; there is a one-to-one relationship between the request's contexts and the response's ConsentResponse. 
+
+        Elements:
+          1. responseId - A unique ID generated by the validation service; this value is stored in the audit logs after validation is complete.
+          2. patientId - The echoed patient ID recognized by the Consent System.
+          3. ContextQualifier - The echoed collection of name-value pairs which identify the context. 
+          4. dateRange - The echoed interval or single date that applies to the PHI in question. Generally, this is the date that the PHI was last updated.
+          5. phiClass - The echoed coded meta data classification code for the data being requested
+          6. confidentialityCode - The echoed coded meta data confidentiality associated with the PHI being requested.
+          7. validUntil - Represents the timestamp after which this result will no longer be valid. This is a convenience for any client system that would like to cache results.
+          8. allowed - The actual Boolean response. If missing, then no decision was made.
+          9. overrideable - If allowed is false, then overrideable may be true, indicating that a subsequent request, with an override would succeed.
+          10.restrictionMessage - A list of messages that, depending on the client, could be displayed to the user.
+          11.trace - A list of actions that were performed to produce the outcome.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="responseId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="patientId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="ContextQualifier" type="cvs:nvPair" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="phiClass" type="cvs:CodedMetaData" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="dateRange" type="cvs:dateRange" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="confidentialityCode" type="cvs:CodedMetaData" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="validUntil" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="allowed" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="overrideable" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="restrictionMessage" type="cvs:restrictionMessage" minOccurs="1" maxOccurs="unbounded"/>
+          <xs:element name="trace" type="cvs:trace" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="restrictionMessage">
+        <xs:annotation>
+          <xs:documentation>A consent evaluation can produce an outcome of "allow", "deny", or "display message". In the case of "display message", the user defined messaged is returned. The message text is intended to be displayed to the end-user. There are 2 types of messages: Patient and Organization. 
+
+        Elements:
+          1. messageText - The message describing the outcome. This is usually the consent directive description.
+          2. policyDescription - The policy that was used to determine the outcome.
+          3. directiveDescription - The consent directive that was used to determine the outcome.
+          4. Type - See msgType below</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="messageText" type="xs:string"/>
+          <xs:element name="policyDescription" type="xs:string" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="directiveDescription" type="xs:string" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="type" type="cvs:msgType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="trace">
+        <xs:annotation>
+          <xs:documentation>Represents a step-by-step trace of how the system came to the result. This is helpful when trying to understand how the system came to the conclusion. The result can be found in the "trace" portion of the response.
+
+        Elements:
+          1. policyDescription - The policy that was evaluated.
+          2. directiveDescription - The directive that was evaluated.
+          3. messages - How the Validation Service came to this conclusion? The trace is delimited with |</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="policyDescription" type="xs:string" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="directiveDescription" type="xs:string" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="messages" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="msgType">
+        <xs:annotation>
+          <xs:documentation>Each ConsentResponse corresponds to the context element in the request; there is a one-to-one relationship between the request's contexts and the response's ConsentResponse. 
+
+        Elements:
+          NO_CONSENT_APPLIED - No patient or system consent was applied to this decision.
+          CONSENT - Temporary Override was requested. OR Consent was applied to this decision.
+          PATIENT - Patient requested a message to be displayed.
+          ORGANIZATION - Organization requested a message to be displayed.
+          OVERRIDE - Temporary Override Found.
+          MESSAGE - System Is Alive OR Consent Directives Exist OR No Consent Directives Exist OR Override Exists OR No Override Exists
+          ACCESS_CONTROLLED_MSG - User is not allowed to view details due to permission – FUTURE.
+          ERR_NOT_INITIALIZED - System not yet initialized.
+          ERR_STALE_DATA - Possible Stale Data - No communication.
+          ERR_MULTI_PATIENT_ID - Multiple Patient IDs are mapped to the RWID in request.
+          ERR_NO_PATIENT_ID - Patient ID missing in request.
+          ERR_NO_CONTEXT - Context section missing in request.
+          ERR_NO_USER_ID - User ID missing in request.
+          ERR_INVALID_INPUT - Other invalid request errors.
+          ERR_INTERNAL - Depending on exception that was thrown.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="CONSENT"/>
+          <xs:enumeration value="PATIENT"/>
+          <xs:enumeration value="ORGANIZATION"/>
+          <xs:enumeration value="OVERRIDE"/>
+          <xs:enumeration value="MESSAGE"/>
+          <xs:enumeration value="NO_CONSENT_APPLIED"/>
+          <xs:enumeration value="ACCESS_CONTROLLED_MSG"/>
+          <xs:enumeration value="ERR_INVALID_INPUT"/>
+          <xs:enumeration value="ERR_MULTI_PATIENT_ID"/>
+          <xs:enumeration value="ERR_NO_PATIENT_ID"/>
+          <xs:enumeration value="ERR_NO_CONTEXT"/>
+          <xs:enumeration value="ERR_NO_USER_ID"/>
+          <xs:enumeration value="ERR_STALE_DATA"/>
+          <xs:enumeration value="ERR_NOT_INITIALIZED"/>
+          <xs:enumeration value="ERR_INTERNAL"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ConsentValidationRequestSOAP">
+    <wsdl:part name="body" element="schema:ConsentValidationRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ConsentValidationResponseSOAP">
+    <wsdl:part name="body" element="schema:ConsentValidationResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="consentValidationPortType">
+    <wsdl:operation name="consentValidation">
+      <wsdl:input message="schema:ConsentValidationRequestSOAP"/>
+      <wsdl:output message="schema:ConsentValidationResponseSOAP"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="consentValidationBinding" type="schema:consentValidationPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="consentValidation">
+      <soap:operation soapAction="http://98.143.106.139:8282/ConsentValidationService"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="consentValidationService">
+    <wsdl:port binding="schema:consentValidationBinding" name="consentValidationPort">
+      <soap:address location="http://98.143.106.139:8282/ConsentValidationService/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://35.194.92.218:9081/cvs/soap</con:endpoint></con:endpoints><con:operation id="b2325562-5ca2-4f46-8b53-5aa2f3226088" isOneWay="false" action="http://98.143.106.139:8282/ConsentValidationService" name="consentValidation" bindingOperationName="consentValidation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="541aec86-84ca-4b89-9283-adf6edca39e9" name="Override"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://35.194.92.218:9081/cvs/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v2="http://www.hipaat.com/schemas/cvs/v2.2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v2:ConsentValidationRequest privacyOperation="disclosure">
+         <v2:requestId>${=java.util.UUID.randomUUID()}</v2:requestId>
+         <v2:userId>talli</v2:userId>
+         <v2:serviceDeliveryOrgId>160072759618</v2:serviceDeliveryOrgId>
+         <v2:purposeOfUse>6</v2:purposeOfUse>
+         <!--1 or more repetitions:-->
+         <v2:context>
+            <v2:patientId>RD001</v2:patientId>
+            <!--<v2:ContextQualifier>-->
+            <!--<v2:name>DOMAIN</v2:name>-->
+            <!--<v2:value>LAB</v2:value>-->
+            <!--</v2:ContextQualifier>-->
+         </v2:context>
+         <!--Optional:-->
+         <v2:override>
+            <v2:code>
+               <v2:codeName>CLINICAL</v2:codeName>
+               <v2:codeSystem>HIPAAT</v2:codeSystem>
+               <!--Optional:-->
+               <v2:codeSystemVersion>1</v2:codeSystemVersion>
+               <!--Optional:-->
+               <v2:displayName>Court Order; Search Warrant; or other Order</v2:displayName>
+            </v2:code>
+            <!--Optional:-->
+            <v2:reason>Testing ListOverride from SOAP UI: Hardy</v2:reason>
+            <!--Optional:-->
+            <v2:pin>cid:760537944532</v2:pin>
+            <!--Optional:-->
+            <v2:substName>Kim Bauer</v2:substName>
+            <!--Optional:-->
+            <v2:substRelationship>Daughter</v2:substRelationship>
+         </v2:override>
+         <!--Optional:-->
+         <v2:attributes>
+            <!--Zero or more repetitions:-->
+            <v2:provider>talli</v2:provider>
+            <v2:facility>160072759618</v2:facility>
+         </v2:attributes>
+         <!--Zero or more repetitions:-->
+         <v2:property>
+            <v2:name>Validation Purpose</v2:name>
+            <v2:value>TEST</v2:value>
+         </v2:property>
+      </v2:ConsentValidationRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://98.143.106.139:8282/ConsentValidationService"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="42876084-e350-4e5e-954b-7c9337a35e7e" name="eHO55TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="a40c9fd4-932b-43c3-8928-3dc03bf8201d" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="1. PutSystemCD" searchProperties="true"><con:settings/><con:testStep type="request" id="a50000c1-8af9-47ce-a1b8-87f6905da8bd" name="1. PutSystemCD"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>consentManagementBinding</con:interface><con:operation>ConsentManagement</con:operation><con:request name="1. PutSystemCD" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="b7548625-4fa4-40cc-997e-b12db8903a64"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://35.194.92.218:9081/cms/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v2="http://www.hipaat.com/schemas/cms/v2.3">
    <soapenv:Header/>
    <soapenv:Body>
       <v2:ConsentManagementRequest>
@@ -9792,7 +10174,7 @@ declare namespace ns1='http://www.hipaat.com/schemas/cms/v2.3';
          </v2:request>
       </v2:ConsentManagementRequest>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="325d42d1-9ae3-4249-b7a7-eb21933c9e3b"/><con:assertion type="Simple Contains" id="899cc771-74d3-4cdb-8280-f33b4f3ce433" name="Contains"><con:configuration><token>&lt;description>GLOBAL Policy - SOAP UI (Hardy)&lt;/description></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Override" id="3049f3ab-02dc-47f7-a79a-8f456a308a14"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>consentManagementBinding</con:interface><con:operation>ConsentManagement</con:operation><con:request name="Override" id="dc88945b-f247-4838-b277-84d0f38dabe7"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://35.194.92.218:9081/cvs/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v2="http://www.hipaat.com/schemas/cvs/v2.2">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="325d42d1-9ae3-4249-b7a7-eb21933c9e3b"/><con:assertion type="Simple Contains" id="899cc771-74d3-4cdb-8280-f33b4f3ce433" name="Contains"><con:configuration><token>&lt;description>GLOBAL Policy - SOAP UI (Hardy)&lt;/description></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Override" id="3049f3ab-02dc-47f7-a79a-8f456a308a14"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>consentValidationBinding</con:interface><con:operation>consentValidation</con:operation><con:request name="Override" id="dc88945b-f247-4838-b277-84d0f38dabe7"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://35.194.92.218:9081/cvs/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v2="http://www.hipaat.com/schemas/cvs/v2.2">
    <soapenv:Header/>
    <soapenv:Body>
       <v2:ConsentValidationRequest privacyOperation="disclosure">
@@ -9840,7 +10222,7 @@ declare namespace ns1='http://www.hipaat.com/schemas/cms/v2.3';
          </v2:property>
       </v2:ConsentValidationRequest>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="71af83b8-d910-43f5-a754-f00ca9cb9392"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Override1" id="051dfd1b-2228-4658-bfad-f4e25804e609"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>consentManagementBinding</con:interface><con:operation>ConsentManagement</con:operation><con:request name="Override1" id="d0cc6cc0-aa84-4ccb-8295-c03ac938e8fc"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://35.194.92.218:9081/cvs/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v2="http://www.hipaat.com/schemas/cvs/v2.2">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="71af83b8-d910-43f5-a754-f00ca9cb9392"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Override1" id="051dfd1b-2228-4658-bfad-f4e25804e609"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>consentValidationBinding</con:interface><con:operation>consentValidation</con:operation><con:request name="Override1" id="d0cc6cc0-aa84-4ccb-8295-c03ac938e8fc"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://35.194.92.218:9081/cvs/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v2="http://www.hipaat.com/schemas/cvs/v2.2">
    <soapenv:Header/>
    <soapenv:Body>
       <v2:ConsentValidationRequest privacyOperation="disclosure">
