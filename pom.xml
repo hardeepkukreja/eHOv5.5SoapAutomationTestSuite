@@ -49,7 +49,7 @@
 					<execution>
 						<id>eHOv55CMSAutomationTest</id>
 						<configuration>
-							<endpoint>http://35.194.92.218:9081/cms/soap</endpoint>
+							<!--<endpoint>http://35.194.92.218:9081/cms/soap</endpoint>-->
 							<projectFile>eHO55CMSAutomation.xml</projectFile>
 							<outputFolder>${project.basedir}/output</outputFolder>
 							<testSuite>eHO55TestSuite</testSuite>
