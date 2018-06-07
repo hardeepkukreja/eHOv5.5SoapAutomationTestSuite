@@ -9773,4 +9773,441 @@ declare namespace ns1='http://www.hipaat.com/schemas/cms/v2.3';
          </v2:request>
       </v2:ConsentManagementRequest>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="5e1735b1-c336-4715-adf3-f25733aae6df"/><con:assertion type="Simple Contains" id="da7a0964-eed7-412c-83b4-9effe1f0b78b" name="Contains"><con:configuration><token>&lt;description>GLOBAL Policy - SOAP UI (Hardy)&lt;/description></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="8622fbbf-bbf4-417c-91fa-efb50d5b5066" name="Contains 1"><con:configuration><token>&lt;revokeReason>User&lt;/revokeReason></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="4ae5aa56-5388-4d8d-bd93-b74dbcd03914" name="Contains 2"><con:configuration><token>&lt;revokeUser>talli@160072759618&lt;/revokeUser></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="5e1735b1-c336-4715-adf3-f25733aae6df"/><con:assertion type="Simple Contains" id="da7a0964-eed7-412c-83b4-9effe1f0b78b" name="Contains"><con:configuration><token>&lt;description>GLOBAL Policy - SOAP UI (Hardy)&lt;/description></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="8622fbbf-bbf4-417c-91fa-efb50d5b5066" name="Contains 1"><con:configuration><token>&lt;revokeReason>User&lt;/revokeReason></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="4ae5aa56-5388-4d8d-bd93-b74dbcd03914" name="Contains 2"><con:configuration><token>&lt;revokeUser>talli@160072759618&lt;/revokeUser></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="1131982c-e155-4716-a0c9-4ebeea0c9221" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="19. ALLOW - Test_Validation - PATIENT_ID" searchProperties="true"><con:settings/><con:testStep type="request" name="PutPolicy_Allow" id="98cb87cd-afc9-47a8-b119-c807a14c6716"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>consentManagementBinding</con:interface><con:operation>ConsentManagement</con:operation><con:request name="PutPolicy_Allow" id="85b456bb-dbb1-4eb7-b12a-8296a9798b4b"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://35.194.92.218:9081/cms/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v2="http://www.hipaat.com/schemas/cms/v2.3">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v2:ConsentManagementRequest>
+         <v2:requestId>${=java.util.UUID.randomUUID()}</v2:requestId>
+         <v2:userId>talli</v2:userId>
+         <v2:serviceDeliveryOrgId>160072759618</v2:serviceDeliveryOrgId>
+         <v2:request>
+            <v2:PutPolicyRequest>
+               <v2:Policy>
+                  <v2:policyId>AAGP</v2:policyId>
+                  <v2:patientId>RD002</v2:patientId>
+                  <v2:description>Allow All Global Policy - SOAP UI (Hardy)</v2:description>
+                  <v2:mustExecute>false</v2:mustExecute>
+                  <v2:classification>GLOBAL</v2:classification>
+                  <!--Optional:-->
+                  <v2:rank>2</v2:rank>
+                  <!--Optional:-->
+                  <v2:usePassphrase>true</v2:usePassphrase>
+                  <v2:consenter isSelf="true" name="" roleCode=""/>
+                  <!--Optional:-->
+                  <v2:realWorldPatientName>Green, Rachel</v2:realWorldPatientName>
+                  <!--Optional:-->
+                  <v2:realWorldPatientIdAuth>HCN</v2:realWorldPatientIdAuth>
+                  <!--Optional:-->
+                  <v2:realWorldPatientIdType>2.16.840.1.113883.4.59</v2:realWorldPatientIdType>
+                  <!--Optional:-->
+                  <v2:realWorldPatientId>HCN-RD-002</v2:realWorldPatientId>
+                  <!--Optional:-->
+                  <v2:userComments>This policy is created to test CVS</v2:userComments>
+                  <v2:effectiveDate>${=new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(new Date())}</v2:effectiveDate>
+                  <v2:expiryDate>2999-12-31T00:00:00.000-05:00</v2:expiryDate>
+                  <!--Optional:-->
+                  <v2:createUser>talli@2.16.840.1.113883.3.239.18.48</v2:createUser>
+                  <!--Optional:-->
+                  <v2:createTs>${=new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(new Date())}</v2:createTs>
+                  <v2:ConsentDirectives>
+                     <v2:ConsentDirective>
+                        <v2:title>Allow All Global CD - SOAP UI (Hardy)</v2:title>
+                        <!--Optional:-->
+                        <v2:priority>1</v2:priority>
+                        <v2:purposeOfUse>
+                           <!--You have a CHOICE of the next 2 items at this level-->
+                           <v2:all>true</v2:all>
+                        </v2:purposeOfUse>
+                        <v2:directiveType>PHI</v2:directiveType>
+                        <v2:privacyOperation>disclosure</v2:privacyOperation>
+                        <v2:decision>allow</v2:decision>
+                        <v2:phiScope allPHI="true">
+                           <!--You have a CHOICE of the next 4 items at this level-->
+                           <!--1 or more repetitions:-->
+                        </v2:phiScope>
+                        <v2:authorizedToView>
+                           <!--Optional:-->
+                           <v2:providers>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:providers>
+                           <!--Optional:-->
+                           <v2:users>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:users>
+                           <!--Optional:-->
+                           <v2:roles>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:roles>
+                           <!--Optional:-->
+                           <v2:workgroups>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:workgroups>
+                           <!--Optional:-->
+                           <v2:departments>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:departments>
+                           <!--Optional:-->
+                           <v2:facilities>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:facilities>
+                           <!--Optional:-->
+                           <v2:jurisdictions>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:jurisdictions>
+                           <!--Optional:-->
+                           <v2:laboratories>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:laboratories>
+                           <!--Optional:-->
+                           <v2:pharmacies>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:pharmacies>
+                           <!--Optional:-->
+                           <v2:payors>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:payors>
+                           <!--Optional:-->
+                           <v2:organizations>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:organizations>
+                           <!--Optional:-->
+                           <v2:dataWarehouses>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:dataWarehouses>
+                           <!--Optional:-->
+                           <v2:userDefined1>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:userDefined1>
+                           <!--Optional:-->
+                           <v2:userDefined2>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:userDefined2>
+                           <!--Optional:-->
+                           <v2:userDefined3>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:userDefined3>
+                           <!--Optional:-->
+                           <v2:userDefined4>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:userDefined4>
+                        </v2:authorizedToView>
+                        <v2:appliesToRequestor>
+                           <!--Optional:-->
+                           <v2:providers>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:providers>
+                           <!--Optional:-->
+                           <v2:users>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:users>
+                           <!--Optional:-->
+                           <v2:roles>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:roles>
+                           <!--Optional:-->
+                           <v2:workgroups>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:workgroups>
+                           <!--Optional:-->
+                           <v2:departments>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:departments>
+                           <!--Optional:-->
+                           <v2:facilities>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:facilities>
+                           <!--Optional:-->
+                           <v2:jurisdictions>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:jurisdictions>
+                           <!--Optional:-->
+                           <v2:laboratories>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:laboratories>
+                           <!--Optional:-->
+                           <v2:pharmacies>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:pharmacies>
+                           <!--Optional:-->
+                           <v2:payors>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:payors>
+                           <!--Optional:-->
+                           <v2:organizations>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:organizations>
+                           <!--Optional:-->
+                           <v2:dataWarehouses>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:dataWarehouses>
+                           <!--Optional:-->
+                           <v2:userDefined1>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:userDefined1>
+                           <!--Optional:-->
+                           <v2:userDefined2>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:userDefined2>
+                           <!--Optional:-->
+                           <v2:userDefined3>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:userDefined3>
+                           <!--Optional:-->
+                           <v2:userDefined4>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:userDefined4>
+                        </v2:appliesToRequestor>
+                        <v2:overrideAllowedFor>
+                           <!--Optional:-->
+                           <v2:providers>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:providers>
+                           <!--Optional:-->
+                           <v2:users>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:users>
+                           <!--Optional:-->
+                           <v2:roles>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:roles>
+                           <!--Optional:-->
+                           <v2:workgroups>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:workgroups>
+                           <!--Optional:-->
+                           <v2:departments>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:departments>
+                           <!--Optional:-->
+                           <v2:facilities>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:facilities>
+                           <!--Optional:-->
+                           <v2:jurisdictions>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:jurisdictions>
+                           <!--Optional:-->
+                           <v2:laboratories>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:laboratories>
+                           <!--Optional:-->
+                           <v2:pharmacies>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:pharmacies>
+                           <!--Optional:-->
+                           <v2:payors>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:payors>
+                           <!--Optional:-->
+                           <v2:organizations>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:organizations>
+                           <!--Optional:-->
+                           <v2:dataWarehouses>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:dataWarehouses>
+                           <!--Optional:-->
+                           <v2:userDefined1>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:userDefined1>
+                           <!--Optional:-->
+                           <v2:userDefined2>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:userDefined2>
+                           <!--Optional:-->
+                           <v2:userDefined3>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:userDefined3>
+                           <!--Optional:-->
+                           <v2:userDefined4>
+                              <!--You have a CHOICE of the next 4 items at this level-->
+                              <!--Optional:-->
+                              <v2:includeAll>true</v2:includeAll>
+                              <!--Optional:-->
+                           </v2:userDefined4>
+                        </v2:overrideAllowedFor>
+                     </v2:ConsentDirective>
+                  </v2:ConsentDirectives>
+               </v2:Policy>
+            </v2:PutPolicyRequest>
+         </v2:request>
+      </v2:ConsentManagementRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="4548c358-1638-4f98-b89a-4f669811ebf1"/><con:assertion type="Simple Contains" id="16b848e2-dee7-45a7-81b2-65d74aa24547" name="Contains"><con:configuration><token>&lt;description>Allow All Global Policy - SOAP UI (Hardy)&lt;/description></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="ALLOW - Test_Validation - PATIENT_ID" id="ad254caf-e6bb-41b2-bb5c-8c70c72617c1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>consentValidationBinding</con:interface><con:operation>consentValidation</con:operation><con:request name="ALLOW - Test_Validation - PATIENT_ID" id="c781dac8-da10-462c-888c-612e758add8c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://35.194.92.218:9081/cvs/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v2="http://www.hipaat.com/schemas/cvs/v2.2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v2:ConsentValidationRequest privacyOperation="disclosure">
+         <v2:requestId>${=java.util.UUID.randomUUID()}</v2:requestId>
+         <v2:userId>talli</v2:userId>
+         <v2:serviceDeliveryOrgId>160072759618</v2:serviceDeliveryOrgId>
+         <v2:purposeOfUse>6</v2:purposeOfUse>
+         <!--1 or more repetitions:-->
+         <v2:context>
+            <v2:patientId>RD002</v2:patientId>
+         </v2:context>
+         <v2:attributes>
+            <!--Zero or more repetitions:-->
+            <v2:provider>kpyette</v2:provider>
+            <v2:facility>160072759618</v2:facility>
+         </v2:attributes>
+         <!--Zero or more repetitions:-->
+         <v2:property>
+            <v2:name>Validation Purpose</v2:name>
+            <v2:value>TEST</v2:value>
+         </v2:property>
+      </v2:ConsentValidationRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c6143e74-1376-462f-ba26-0f6c55e547e7"/><con:assertion type="Simple Contains" id="920eca5c-998c-4baa-9d87-1492f894ed58" name="Contains"><con:configuration><token>&lt;cvs:policyDescription>Allow All Global Policy - SOAP UI (Hardy)&lt;/cvs:policyDescription></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="2ef7b28a-5be9-43b2-8b38-a7379f0b1c8d" name="Contains 1"><con:configuration><token>&lt;cvs:allowed>true&lt;/cvs:allowed></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="RevokePolicy" id="ba83aa83-28a6-4c41-a982-e1e98c7fb3b4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>consentManagementBinding</con:interface><con:operation>ConsentManagement</con:operation><con:request name="RevokePolicy" id="46b16f58-ed16-48d8-84bc-de7510401328"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://35.194.92.218:9081/cms/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v2="http://www.hipaat.com/schemas/cms/v2.3">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v2:ConsentManagementRequest>
+         <v2:requestId>${=java.util.UUID.randomUUID()}</v2:requestId>
+         <v2:userId>talli</v2:userId>
+         <v2:serviceDeliveryOrgId>160072759618</v2:serviceDeliveryOrgId>
+         <v2:request>
+            <v2:RevokePolicyRequest policyId="AAGP" patientId="RD002" userComments="Testing Revoke Policy SOAP UI: Hardy "/>
+         </v2:request>
+      </v2:ConsentManagementRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="87fbc7ae-f4f5-41dd-ab88-9c322889950c"/><con:assertion type="Simple Contains" id="ce3d1627-a966-4348-92de-7ae76864104c" name="Contains"><con:configuration><token>&lt;description>Allow All Global Policy - SOAP UI (Hardy)&lt;/description></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="54cb23e5-07b4-4d37-83f9-0dab089a46d7" name="Contains 1"><con:configuration><token>&lt;revokeReason>User&lt;/revokeReason></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="57fc541b-6896-4dd9-bac3-75bacd3b1034" name="Contains 2"><con:configuration><token>&lt;revokeUser>talli@160072759618&lt;/revokeUser></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
